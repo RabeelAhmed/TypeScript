@@ -56,29 +56,60 @@
 // }
 // Class & Object with Constructor Concept <==============
 // Defining a class 'Device' with a constructor that initializes 'name', 'company', 'type', and 'price'.
-class Device {
-    constructor(name, company, type, price) {
-        this.name = name;
-        this.company = company;
-        this.type = type;
-        this.price = price;
+// class Device {
+//     constructor(public name: String, public company: String, public type: String, public price: number) {}
+// }
+// let d1 = new Device("Rolex GMT-Master", "Rolex", "digital", 120000);
+// // Class & Object with Getters and Setters Concept <==============
+// // Defining a class 'User' with a private property '_name' and methods to get and set its value.
+// class User {
+//     // Constructor to initialize the '_name' property.
+//     constructor(public _name: string) {}
+//     // Getter method to return the value of '_name'.
+//     get name() {
+//         return this._name;
+//     }
+//     // Setter method to modify the value of '_name'.
+//     set name(value: string) {
+//         this._name = value;
+//     }
+// }
+// let u1 = new User("Rabeel");
+// Class & Object with Static Members Concept <==============
+// Defining a class 'hero' with static members.
+// Static properties and methods belong to the class itself, not to instances.
+class hero {
+    // A static method 'getRandom' that returns a random number.
+    static getRandom() {
+        return Math.random();
     }
 }
-let d1 = new Device("Rolex GMT-Master", "Rolex", "digital", 120000);
-// Class & Object with Getters and Setters Concept <==============
-// Defining a class 'User' with a private property '_name' and methods to get and set its value.
-class User {
-    // Constructor to initialize the '_name' property.
-    constructor(_name) {
-        this._name = _name;
+// A static property 'version' that belongs to the class 'hero'.
+hero.version = 1.0;
+// The actual implementation of 'temp' function using optional parameters and type checks.
+function temp(a, b) {
+    if (typeof a === "string" && typeof b === "undefined") {
+        console.log("first function");
     }
-    // Getter method to return the value of '_name'.
-    get name() {
-        return this._name;
+    else if (typeof a === "string" && typeof b === "number") {
+        console.log("second function");
+        return b;
     }
-    // Setter method to modify the value of '_name'.
-    set name(value) {
-        this._name = value;
+    else {
+        throw new Error("there is something wrong");
     }
 }
-let u1 = new User("Rabeel");
+// Function calls based on the signatures defined.
+temp("Rabeel");
+temp("Ahmed", 12);
+// Generics in Functions Concept <==============
+// Defining a generic function 'test' that can handle any type 'T'.
+function test(a) {
+    console.log(typeof a);
+}
+test(12);
+// A function 'abcd' that takes an object conforming to 'halwa' with 'key' being a String.
+function abcd(obj) {
+    console.log(obj.key);
+}
+abcd({ name: "Rabeel", age: 22, key: "123nkasak12" });
