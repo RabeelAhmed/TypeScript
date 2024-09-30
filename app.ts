@@ -84,30 +84,102 @@
 // Class & Object with Constructor Concept <==============
 
 // Defining a class 'Device' with a constructor that initializes 'name', 'company', 'type', and 'price'.
-class Device {
-    constructor(public name: String, public company: String, public type: String, public price: number) {}
+// class Device {
+//     constructor(public name: String, public company: String, public type: String, public price: number) {}
+// }
+
+
+// let d1 = new Device("Rolex GMT-Master", "Rolex", "digital", 120000);
+
+
+// // Class & Object with Getters and Setters Concept <==============
+
+// // Defining a class 'User' with a private property '_name' and methods to get and set its value.
+// class User {
+//     // Constructor to initialize the '_name' property.
+//     constructor(public _name: string) {}
+
+//     // Getter method to return the value of '_name'.
+//     get name() {
+//         return this._name;
+//     }
+
+//     // Setter method to modify the value of '_name'.
+//     set name(value: string) {
+//         this._name = value;
+//     }
+// }
+
+// let u1 = new User("Rabeel");
+
+
+// Class & Object with Static Members Concept <==============
+
+// Defining a class 'hero' with static members.
+// Static properties and methods belong to the class itself, not to instances.
+class hero {
+    // A static property 'version' that belongs to the class 'hero'.
+    static version = 1.0
+
+    // A static method 'getRandom' that returns a random number.
+    static getRandom() {
+        return Math.random();
+    }
+}
+
+// Static members can be accessed directly from the class without creating an instance.
+
+// Function Overloading Concept <==============
+
+// Function overloading allows multiple function signatures for one function.
+
+function temp(a: string): void;
+
+// The secondtemp signature accepts a string and a number, returning a number.
+function temp(a: string, b: number): number;
+
+// The actual implementation of 'temp' function using optional parameters and type checks.
+function temp(a: any, b?: any): any {
+    if (typeof a === "string" && typeof b === "undefined") {
+        
+        console.log("first function");
+    } else if (typeof a === "string" && typeof b === "number") {
+        
+        console.log("second function");
+        return b;
+    } else {
+        
+        throw new Error("there is something wrong");
+    }
+}
+
+// Function calls based on the signatures defined.
+temp("Rabeel");           
+temp("Ahmed", 12);        
+// Generics in Functions Concept <==============
+
+// Defining a generic function 'test' that can handle any type 'T'.
+function test<T>(a: T) {
+   
+    console.log(typeof a);
 }
 
 
-let d1 = new Device("Rolex GMT-Master", "Rolex", "digital", 120000);
+test(12); 
 
+// Generics in Interface Concept <==============
 
-// Class & Object with Getters and Setters Concept <==============
-
-// Defining a class 'User' with a private property '_name' and methods to get and set its value.
-class User {
-    // Constructor to initialize the '_name' property.
-    constructor(public _name: string) {}
-
-    // Getter method to return the value of '_name'.
-    get name() {
-        return this._name;
-    }
-
-    // Setter method to modify the value of '_name'.
-    set name(value: string) {
-        this._name = value;
-    }
+// Defining a generic interface 'halwa' with a type parameter 'T'.
+interface halwa<T> {
+    name: String, 
+    age: number,    
+    key: T,       
 }
 
-let u1 = new User("Rabeel");
+// A function 'abcd' that takes an object conforming to 'halwa' with 'key' being a String.
+function abcd(obj: halwa<String>) {
+   
+    console.log(obj.key);
+}
+
+abcd({ name: "Rabeel", age: 22, key: "123nkasak12" });
