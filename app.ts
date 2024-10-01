@@ -117,69 +117,120 @@
 
 // Defining a class 'hero' with static members.
 // Static properties and methods belong to the class itself, not to instances.
-class hero {
-    // A static property 'version' that belongs to the class 'hero'.
-    static version = 1.0
+// class hero {
+//     // A static property 'version' that belongs to the class 'hero'.
+//     static version = 1.0
 
-    // A static method 'getRandom' that returns a random number.
-    static getRandom() {
-        return Math.random();
-    }
-}
+//     // A static method 'getRandom' that returns a random number.
+//     static getRandom() {
+//         return Math.random();
+//     }
+// }
 
-// Static members can be accessed directly from the class without creating an instance.
+// // Static members can be accessed directly from the class without creating an instance.
 
-// Function Overloading Concept <==============
+// // Function Overloading Concept <==============
 
-// Function overloading allows multiple function signatures for one function.
+// // Function overloading allows multiple function signatures for one function.
 
-function temp(a: string): void;
+// function temp(a: string): void;
 
-// The secondtemp signature accepts a string and a number, returning a number.
-function temp(a: string, b: number): number;
+// // The secondtemp signature accepts a string and a number, returning a number.
+// function temp(a: string, b: number): number;
 
-// The actual implementation of 'temp' function using optional parameters and type checks.
-function temp(a: any, b?: any): any {
-    if (typeof a === "string" && typeof b === "undefined") {
+// // The actual implementation of 'temp' function using optional parameters and type checks.
+// function temp(a: any, b?: any): any {
+//     if (typeof a === "string" && typeof b === "undefined") {
         
-        console.log("first function");
-    } else if (typeof a === "string" && typeof b === "number") {
+//         console.log("first function");
+//     } else if (typeof a === "string" && typeof b === "number") {
         
-        console.log("second function");
-        return b;
-    } else {
+//         console.log("second function");
+//         return b;
+//     } else {
         
-        throw new Error("there is something wrong");
-    }
-}
+//         throw new Error("there is something wrong");
+//     }
+// }
 
-// Function calls based on the signatures defined.
-temp("Rabeel");           
-temp("Ahmed", 12);        
-// Generics in Functions Concept <==============
+// // Function calls based on the signatures defined.
+// temp("Rabeel");           
+// temp("Ahmed", 12);        
+// // Generics in Functions Concept <==============
 
-// Defining a generic function 'test' that can handle any type 'T'.
-function test<T>(a: T) {
+// // Defining a generic function 'test' that can handle any type 'T'.
+// function test<T>(a: T) {
    
-    console.log(typeof a);
-}
+//     console.log(typeof a);
+// }
 
 
-test(12); 
+// test(12); 
 
-// Generics in Interface Concept <==============
+// // Generics in Interface Concept <==============
 
-// Defining a generic interface 'halwa' with a type parameter 'T'.
-interface halwa<T> {
-    name: String, 
-    age: number,    
-    key: T,       
-}
+// // Defining a generic interface 'halwa' with a type parameter 'T'.
+// interface halwa<T> {
+//     name: String, 
+//     age: number,    
+//     key: T,       
+// }
 
-// A function 'abcd' that takes an object conforming to 'halwa' with 'key' being a String.
-function abcd(obj: halwa<String>) {
+// // A function 'abcd' that takes an object conforming to 'halwa' with 'key' being a String.
+// function abcd(obj: halwa<String>) {
    
-    console.log(obj.key);
+//     console.log(obj.key);
+// }
+
+// abcd({ name: "Rabeel", age: 22, key: "123nkasak12" });
+
+
+
+// Generics Classes Concept <==============
+
+// Defining a generic class 'bottle' that accepts a type parameter 'T'.
+class bottle<T> {
+    constructor(public key: T) {} // Initializes 'key' with type 'T'.
 }
 
-abcd({ name: "Rabeel", age: 22, key: "123nkasak12" });
+// Creating an instance 'b1' of the 'bottle' class with the type 'String'.
+let b1 = new bottle<String>("Rabeel");
+
+
+// catch in Generics Concept <==============
+
+// Example of a generic function 'abcd' that accepts two parameters of the same type 'T'.
+function abcd<T>(a: T, b: T) {
+
+    return 'hey'; 
+}
+
+
+abcd<String>("helo", "hey");
+
+// Type Assertion Concept <==============
+
+// Declaring a variable 'a' of type 'any'.
+let x: any;
+
+// Using type assertion to specify 'x' as a number.
+(<number>x); // This tells TypeScript to treat 'x' as x number.
+
+// Type Casting Concept <==============
+
+// Casting a string to a number using the Number constructor.
+let a = Number("12"); // 'a' is now of type number.
+
+// Logging the type of 'a'.
+console.log(typeof a); // Outputs: 'number'
+
+// Non-null Assertion Concept <==============
+
+// Declaring a variable 'b' that can be null, undefined, or a string.
+let b: null | undefined | string;
+
+// Assigning a string value to 'b'.
+b = "hey";
+
+// Using non-null assertion to tell TypeScript that 'b' is not null or undefined.
+b!; 
