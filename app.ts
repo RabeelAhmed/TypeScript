@@ -189,48 +189,103 @@
 // Generics Classes Concept <==============
 
 // Defining a generic class 'bottle' that accepts a type parameter 'T'.
-class bottle<T> {
-    constructor(public key: T) {} // Initializes 'key' with type 'T'.
+// class bottle<T> {
+//     constructor(public key: T) {} // Initializes 'key' with type 'T'.
+// }
+
+// // Creating an instance 'b1' of the 'bottle' class with the type 'String'.
+// let b1 = new bottle<String>("Rabeel");
+
+
+// // catch in Generics Concept <==============
+
+// // Example of a generic function 'abcd' that accepts two parameters of the same type 'T'.
+// function abcd<T>(a: T, b: T) {
+
+//     return 'hey'; 
+// }
+
+
+// abcd<String>("helo", "hey");
+
+// // Type Assertion Concept <==============
+
+// // Declaring a variable 'a' of type 'any'.
+// let x: any;
+
+// // Using type assertion to specify 'x' as a number.
+// (<number>x); // This tells TypeScript to treat 'x' as x number.
+
+// // Type Casting Concept <==============
+
+// // Casting a string to a number using the Number constructor.
+// let a = Number("12"); // 'a' is now of type number.
+
+// // Logging the type of 'a'.
+// console.log(typeof a); // Outputs: 'number'
+
+// // Non-null Assertion Concept <==============
+
+// // Declaring a variable 'b' that can be null, undefined, or a string.
+// let b: null | undefined | string;
+
+// // Assigning a string value to 'b'.
+// b = "hey";
+
+// // Using non-null assertion to tell TypeScript that 'b' is not null or undefined.
+// b!; 
+
+
+// Type Guards | Type Narrowing Concept <==============
+
+function abcd(a: number | string) {
+    // Checking if 'a' is a number
+    if (typeof a === "number") {
+        return "number";
+    }
+    // Checking if 'a' is a string
+    else if (typeof a === "string") {
+        return "string";
+    }
+    // Handling unexpected types
+    else {
+        throw new Error('Invalid type');
+    }
 }
 
-// Creating an instance 'b1' of the 'bottle' class with the type 'String'.
-let b1 = new bottle<String>("Rabeel");
+// Calling 'abcd' with different types to demonstrate type narrowing
+console.log(abcd(12));      // Expected output: 'number'
+console.log(abcd('hey'));   // Expected output: 'string'
+// This will throw an error since 'boolean' is not allowed
+// console.log(abcd(true)); 
 
+// Instanceof Concept <==============
 
-// catch in Generics Concept <==============
-
-// Example of a generic function 'abcd' that accepts two parameters of the same type 'T'.
-function abcd<T>(a: T, b: T) {
-
-    return 'hey'; 
+class tvRemote {
+    switchTvOff() {
+        console.log("switching off TV");
+    }
 }
 
+class carRemote {
+    switchCarOff() {
+        console.log("switching off CAR");
+    }
+}
 
-abcd<String>("helo", "hey");
+let t1 = new tvRemote();
+let c1 = new carRemote();
 
-// Type Assertion Concept <==============
+// Function to handle different instances using 'instanceof' for type checking
+function switchoffkaro(device: tvRemote | carRemote) {
+    if (device instanceof tvRemote) {
+        device.switchTvOff(); // Calls TV-specific method
+    } else if (device instanceof carRemote) {
+        device.switchCarOff(); // Calls Car-specific method
+    } else {
+        throw new Error("Wrong");
+    }
+}
 
-// Declaring a variable 'a' of type 'any'.
-let x: any;
-
-// Using type assertion to specify 'x' as a number.
-(<number>x); // This tells TypeScript to treat 'x' as x number.
-
-// Type Casting Concept <==============
-
-// Casting a string to a number using the Number constructor.
-let a = Number("12"); // 'a' is now of type number.
-
-// Logging the type of 'a'.
-console.log(typeof a); // Outputs: 'number'
-
-// Non-null Assertion Concept <==============
-
-// Declaring a variable 'b' that can be null, undefined, or a string.
-let b: null | undefined | string;
-
-// Assigning a string value to 'b'.
-b = "hey";
-
-// Using non-null assertion to tell TypeScript that 'b' is not null or undefined.
-b!; 
+// Testing with carRemote instance
+switchoffkaro(c1); // Expected output: 'switching off CAR'
